@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:background="#A0C4E6"
+        android:orientation="vertical"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="40dp">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="casition"
+                android:textColor="#FFFFFF"
+                android:textSize="48dp"
+                android:textStyle="normal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/test2"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/profile"
+                />
+
+            <LinearLayout
+                android:id="@+id/test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/currentname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="7dp"
+                    android:gravity="left"
+                    android:text="홍길동"
+                    android:textColor="#5e5e5e"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/currentid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="123456@gmail.com"
+                    android:textStyle="bold"
+                    android:textColor="#5e5e5e"
+                    android:textSize="15dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/car"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="차량 번호"
+            android:textColor="#5e5e5e"
+            android:textSize="18dp"
+            android:layout_marginTop="50dp"
+            />
+        <TextView
+            android:id="@+id/carnum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="52바 3462"
+            android:textColor="#5e5e5e"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            />
+        <Button
+            android:id="@+id/btn_modify"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="80dp"
+            android:textColor="#FFFFFF"
+            android:text="차량 번호 변경"
+            android:backgroundTint="#5e5e5e"
+            />
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:text="로그아웃"
+            android:backgroundTint="#5e5e5e"
+            android:layout_marginBottom="50dp"
+            />
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="문의/피드백 jeongkim312@naver.com"
+
+            android:textColor="#5e5e5e"
+            android:textSize="10dp"
+            />
+    </LinearLayout>
+
+</LinearLayout>
+
