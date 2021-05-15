@@ -27,7 +27,7 @@
                 android:layout_marginTop="10dp"
                 android:text="casition"
                 android:textColor="#FFFFFF"
-                android:textSize="48dp"
+                android:textSize="40dp"
                 android:textStyle="normal" />
         </LinearLayout>
 
@@ -38,19 +38,20 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/profile"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginLeft="20dp"
-                android:src="@drawable/profile"
-                />
+<!--            <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                android:id="@+id/profile"-->
+<!--                android:layout_width="70dp"-->
+<!--                android:layout_height="70dp"-->
+<!--                android:layout_marginRight="30dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:src="@drawable/profile"-->
+<!--                />-->
 
             <LinearLayout
                 android:id="@+id/test"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -87,7 +88,7 @@
             android:text="차량 번호"
             android:textColor="#5e5e5e"
             android:textSize="18dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             />
         <TextView
             android:id="@+id/carnum"
@@ -97,27 +98,51 @@
             android:textColor="#5e5e5e"
             android:textSize="30dp"
             android:textStyle="bold"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             />
-        <Button
-            android:id="@+id/btn_modify"
-            android:layout_width="250dp"
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="80dp"
-            android:textColor="#FFFFFF"
-            android:text="차량 번호 변경"
-            android:backgroundTint="#5e5e5e"
-            />
-        <Button
-            android:id="@+id/btn_logout"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
-            android:text="로그아웃"
-            android:backgroundTint="#5e5e5e"
-            android:layout_marginBottom="50dp"
-            />
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <View
+                android:layout_width="150dp"
+                android:layout_height="1dp"
+                android:background="#5e5e5e"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="20dp"/>
+
+            <Button
+                android:id="@+id/btn_modify"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:textColor="#5e5e5e"
+                android:text="차량 번호 변경"
+                android:background="#00ff0000" />
+
+            <Button
+                android:id="@+id/btn_calc"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:textColor="#5e5e5e"
+                android:text="정산"
+                android:background="#00ff0000" />
+
+            <Button
+                android:id="@+id/btn_logout"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:textColor="#5e5e5e"
+                android:text="로그아웃"
+                android:background="#00ff0000"
+                android:layout_marginBottom="60dp" />
+
+        </LinearLayout>
+
+
         <TextView
             android:id="@+id/email"
             android:layout_width="wrap_content"

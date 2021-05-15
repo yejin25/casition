@@ -127,7 +127,6 @@
             >
         </TextView>
         <TextView
-            android:id="@+id/btn_findpw"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -136,6 +135,7 @@
             android:text = "|">
         </TextView>
         <TextView
+            android:id="@+id/btn_findpw"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#5e5e5e"

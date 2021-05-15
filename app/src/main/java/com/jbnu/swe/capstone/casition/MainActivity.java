@@ -23,8 +23,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
     private ImageView menu;
-    private Button logout;
-    CircleImageView user_profile ;
+    private Button logout, change_carNum, calc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +32,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         menu = (ImageView) findViewById(R.id.menubar);
-
-        user_profile = findViewById(R.id.profile);
-
-
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,18 +47,37 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation);
 
         logout = (Button) findViewById(R.id.btn_logout);
+        change_carNum = (Button) findViewById(R.id.btn_modify);
+        calc = (Button) findViewById(R.id.btn_calc);
 
         View header = navigationView.getHeaderView(0);
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
+        change_carNum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CarNumRegisterActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
+        calc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CalcActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
 
         drawLayout.openDrawer(Gravity.LEFT);

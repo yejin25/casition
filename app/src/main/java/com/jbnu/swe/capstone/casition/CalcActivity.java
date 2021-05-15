@@ -12,7 +12,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class CarNumRegisterActivity extends AppCompatActivity {
+public class CalcActivity extends AppCompatActivity {
     private ImageView menu;
     private Button logout, change_carNum, calc;
 
