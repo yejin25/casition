@@ -152,8 +152,9 @@ public class SignUpActivity extends AppCompatActivity {
                 } catch (JSONException | IOException e) {
                     e.printStackTrace();
                 }
-
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);   //이 경우 자동차 등록증 입력하는 화면으로 이동하는 게 좋을 것 같음. 로그인화면에서 들어가면 그냥 주차장 도면 나오게 하고
+                //이 경우 자동차 등록증 입력하는 화면으로 이동하는 게 좋을 것 같음. 로그인화면에서 들어가면 그냥 주차장 도면 나오게 하고
+                //아니면 sharedPreference 쓰던가
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
                 finish();
             }
