@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -12,6 +22,16 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="#A0C4E6">
+
+            <ImageView
+                android:id="@+id/menubar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:contentDescription="menu_list"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:src="@drawable/menu" />
 
             <TextView
                 android:id="@+id/txt_inputnum"
@@ -34,6 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center">
+
         <TextView
             android:id="@+id/car_number"
             android:layout_width="60dp"
@@ -58,23 +79,53 @@
             android:hint="차량 번호를 입력해주세요"
             android:textColor="#5e5e5e"
             android:textSize="15sp" />
-
     </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/register"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:maxWidth="200dp"
+            android:maxHeight="200dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_launcher_foreground" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center">
     <Button
-        android:id="@+id/btn_auth"
+        android:id="@+id/btn_select"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:backgroundTint="#A0C4E6"
-        android:text="본인 인증"
+        android:text="사진 선택"
         android:textColor="#FFFFFF"></Button>
+
+        <Button
+            android:id="@+id/btn_accept"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:backgroundTint="#A0C4E6"
+            android:layout_below="@id/btn_select"
+            android:text="승인"
+            android:textColor="#FFFFFF"></Button>
     </RelativeLayout>
     </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/menuheader" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

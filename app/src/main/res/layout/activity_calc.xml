@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#A0C4E6">
+
+            <ImageView
+                android:id="@+id/menubar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:contentDescription="menu_list"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:src="@drawable/menu" />
+
+            <TextView
+                android:id="@+id/txt_inputnum"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:text="정산"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/price_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="&lt;요금표&gt;"
+                    android:textSize="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/basic_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/price_list"
+                    android:gravity="center"
+                    android:layout_marginBottom="5dp"
+                    android:text="기본(30분) : 3000원" />
+
+                <TextView
+                    android:id="@+id/additional_fee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/basic_rate"
+                    android:gravity="center"
+                    android:text="10분 당 1000원 추가" />
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/entrance"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginRight="20dp"
+                    android:text="입차 시간"
+                    android:textColor="#5e5e5e"
+                    android:textSize="15dp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/entrance_time"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_toRightOf="@+id/entrance"
+
+                    android:text="2021-04-08-16-30-00"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/total"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_below="@+id/entrance"
+                    android:text="총 주차 시간"
+                    android:textColor="#5e5e5e"
+                    android:textSize="15dp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/total_time"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_toRightOf="@+id/total"
+                    android:layout_below="@+id/entrance_time"
+                    android:textSize="15sp"
+                    android:text="57분"/>
+
+                <View
+                    android:id="@+id/horizon_bar"
+                    android:layout_width="300dp"
+                    android:layout_height="1dp"
+                    android:background="#5e5e5e"
+                    android:layout_marginBottom="20dp"
+                    android:layout_below="@+id/total"/>
+
+                <TextView
+                    android:id="@+id/expected"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_below="@+id/horizon_bar"
+                    android:text="예상 정산 금액"
+                    android:textColor="#5e5e5e"
+                    android:textSize="15dp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/expected_charge"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="20dp"
+                    android:layout_toRightOf="@+id/expected"
+                    android:layout_below="@+id/horizon_bar"
+                    android:textSize="15sp"
+                    android:text="6000원"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/menuheader" />
+
+</androidx.drawerlayout.widget.DrawerLayout>
