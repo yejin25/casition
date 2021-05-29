@@ -2,13 +2,16 @@ package com.jbnu.swe.capstone.casition;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
@@ -28,11 +31,21 @@ import com.google.android.material.navigation.NavigationView;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class CarNumRegisterActivity extends AppCompatActivity {
     private ImageView menu, register;
@@ -41,6 +54,8 @@ public class CarNumRegisterActivity extends AppCompatActivity {
     private EditText carNum;
     private static final int PICK_FROM_ALBUM = 1;
     private static final int PICK_FROM_CAMERA = 2;
+
+    private String server;
 
     private File tempFile;
 
@@ -53,6 +68,10 @@ public class CarNumRegisterActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inputnumber);
+
+        SharedPreferences sf = getSharedPreferences("user",Context.MODE_PRIVATE);
+
+        server = "http://114.70.193.152:10111/hipowebserver_war/android/"+sf.getString("id","user") +"/registercar";
 
         tedPermission();
 
@@ -89,6 +108,36 @@ public class CarNumRegisterActivity extends AppCompatActivity {
                     Toast.makeText(CarNumRegisterActivity.this, "자동차 등록증을 추가하세요.", Toast.LENGTH_LONG);
                 }else{
                     //서버로 데이터 전송
+                    try {
+                        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                        StrictMode.setThreadPolicy(policy);
+
+                        OkHttpClient client = new OkHttpClient();
+
+//                        JSONObject postJsonData = new JSONObject();
+//                        postJsonData.put("carNumber", car_num);
+//                        postJsonData.put("carLicense", tempFile);
+
+//                        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),postJsonData.toString());
+
+                        RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM)
+                                .addFormDataPart("carNumber",car_num)
+                                .addFormDataPart("carLicense", sf.getString("id","user"), RequestBody.create(MultipartBody.FORM, new File(tempFile.getAbsolutePath())))
+                                .build();
+
+                        Request request = new Request.Builder().url(server).post(requestBody).build();
+
+                        Response response = client.newCall(request).execute();
+
+                        if(response.code() == 200){
+                            Log.d("SignUp", "=============성공" + response.code());
+                        }else{
+                            Log.d("SignUp", "=============실패" + response.code());
+                        }
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });

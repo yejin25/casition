@@ -1,8 +1,11 @@
 package com.jbnu.swe.capstone.casition;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,10 +28,14 @@ public class LoginActivity extends AppCompatActivity {
     private TextView findId, findPW;
     private EditText Id, PW;
     private String id, pw;
-    private String server = "";
+    private String server = "http://114.70.193.152:10111/hipowebserver_war/android/user/signin";
+
+    SharedPreferences sf = null;
+    SharedPreferences.Editor editor = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -38,6 +45,9 @@ public class LoginActivity extends AppCompatActivity {
         findPW = (TextView) findViewById(R.id.btn_findpw);
         Id = (EditText) findViewById(R.id.user_id);
         PW = (EditText) findViewById(R.id.user_pw);
+
+        sf = getSharedPreferences("user", Context.MODE_PRIVATE);
+        editor = sf.edit();
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 } else {
                     if(isExistUser()){
+                        editor.putString("id",id);
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
                         finish();
@@ -93,22 +104,25 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean isExistUser(){
         try {
-            //여기도 서버에서 아이디 비밀번호 일치 확인해서 t/f 보내주세요...ㅎㅎ
            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
 
             OkHttpClient client = new OkHttpClient();
+//            OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new BasicAuthInterceptor(id, pw)).build();
 
             JSONObject postJsonData = new JSONObject();
             postJsonData.put("id", id);
             postJsonData.put("pw", pw);
 
-            RequestBody requestBody = RequestBody.create(postJsonData.toString(), MediaType.parse("application/json; charset=utf-8"));
+            RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),postJsonData.toString());
+
             Request request = new Request.Builder().url(server).post(requestBody).build();
 
             Response response = client.newCall(request).execute();
 
-            if(response.isSuccessful()){        //로그인 성공
+            Log.d("response","============"+response.code());
+
+            if(response.code() == 200){        //로그인 성공
                 return true;
             }else{
                 return false;        //로그인 실패

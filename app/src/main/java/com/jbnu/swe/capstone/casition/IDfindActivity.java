@@ -70,7 +70,7 @@ public class IDfindActivity extends AppCompatActivity {
             postJsonData.put("name", name);
             postJsonData.put("email", email);
 
-            RequestBody requestBody = RequestBody.create(postJsonData.toString(), MediaType.parse("application/json; charset=utf-8"));
+            RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), postJsonData.toString());
             Request request = new Request.Builder().url(server).post(requestBody).build();
 
             Response response = client.newCall(request).execute();
