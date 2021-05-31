@@ -8,23 +8,24 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="280dp"
+        android:layout_height="277dp"
         android:background="#A0C4E6"
         android:orientation="vertical"
         android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginTop="30dp"
-            android:layout_marginBottom="40dp">
+            android:layout_marginBottom="40dp"
+            android:orientation="vertical">
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
                 android:layout_marginTop="10dp"
+                android:gravity="center"
                 android:text="casition"
                 android:textColor="#FFFFFF"
                 android:textSize="40dp"
@@ -38,14 +39,14 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-<!--            <de.hdodenhof.circleimageview.CircleImageView-->
-<!--                android:id="@+id/profile"-->
-<!--                android:layout_width="70dp"-->
-<!--                android:layout_height="70dp"-->
-<!--                android:layout_marginRight="30dp"-->
-<!--                android:layout_marginLeft="20dp"-->
-<!--                android:src="@drawable/profile"-->
-<!--                />-->
+            <!--            <de.hdodenhof.circleimageview.CircleImageView-->
+            <!--                android:id="@+id/profile"-->
+            <!--                android:layout_width="70dp"-->
+            <!--                android:layout_height="70dp"-->
+            <!--                android:layout_marginRight="30dp"-->
+            <!--                android:layout_marginLeft="20dp"-->
+            <!--                android:src="@drawable/profile"-->
+            <!--                />-->
 
             <LinearLayout
                 android:id="@+id/test"
@@ -58,11 +59,12 @@
                     android:id="@+id/currentname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginBottom="7dp"
                     android:gravity="left"
                     android:text="홍길동"
                     android:textColor="#5e5e5e"
-                    android:textSize="20dp"
+                    android:textSize="30dp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -86,7 +88,7 @@
             android:id="@+id/carnum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="52바 3462"
+            android:text="등록 필요"
             android:textColor="#5e5e5e"
             android:textSize="30dp"
             android:textStyle="bold"
@@ -106,6 +108,14 @@
                 android:background="#5e5e5e"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="20dp"/>
+
+            <Button
+                android:id="@+id/btn_loc"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:textColor="#5e5e5e"
+                android:text="차량 위치 확인"
+                android:background="#00ff0000" />
 
             <Button
                 android:id="@+id/btn_modify"

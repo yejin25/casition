@@ -83,6 +83,7 @@
                 android:layout_alignLeft="@+id/user_id"
                 android:background="@drawable/style_edittext"
                 android:hint="비밀번호를 입력해주세요"
+                android:inputType="textPassword"
                 android:textColor="#5e5e5e"
                 android:textSize="15sp"
                 />
@@ -97,6 +98,7 @@
             android:layout_width="140dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
             android:layout_gravity="center"
             android:backgroundTint="#A0C4E6"
             android:text="SIGN UP"

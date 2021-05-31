@@ -1,11 +1,14 @@
 package com.jbnu.swe.capstone.casition;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -15,6 +18,7 @@ import com.google.android.material.navigation.NavigationView;
 public class CalcActivity extends AppCompatActivity {
     private ImageView menu;
     private Button logout, change_carNum, calc;
+    private TextView name, plateNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,16 +41,23 @@ public class CalcActivity extends AppCompatActivity {
         DrawerLayout drawLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation);
 
+        SharedPreferences sf = getSharedPreferences("user", Context.MODE_PRIVATE);
+
         logout = (Button) findViewById(R.id.btn_logout);
         change_carNum = (Button) findViewById(R.id.btn_modify);
         calc = (Button) findViewById(R.id.btn_calc);
+        name = (TextView) findViewById(R.id.currentname);
+        plateNum = (TextView) findViewById(R.id.carnum);
+
+        name.setText(sf.getString("name","NoName"));
+        plateNum.setText(sf.getString("plateNum", "등록 필요"));
 
         View header = navigationView.getHeaderView(0);
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
                 finish();
             }

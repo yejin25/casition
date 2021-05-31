@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
@@ -14,8 +16,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -31,11 +38,9 @@ public class LoginActivity extends AppCompatActivity {
     private String server = "http://114.70.193.152:10111/hipowebserver_war/android/user/signin";
 
     SharedPreferences sf = null;
-    SharedPreferences.Editor editor = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -47,7 +52,6 @@ public class LoginActivity extends AppCompatActivity {
         PW = (EditText) findViewById(R.id.user_pw);
 
         sf = getSharedPreferences("user", Context.MODE_PRIVATE);
-        editor = sf.edit();
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,14 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                     PW.requestFocus();
 
                 } else {
-                    if(isExistUser()){
-                        editor.putString("id",id);
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }else{
-                        Toast.makeText(LoginActivity.this, "일치하는 정보가 없습니다.", Toast.LENGTH_LONG).show();
-                    }
+                    checkExistUser();
                 }
             }
         });
@@ -102,17 +99,17 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private boolean isExistUser(){
+    private void checkExistUser(){
         try {
            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
 
             OkHttpClient client = new OkHttpClient();
-//            OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new BasicAuthInterceptor(id, pw)).build();
 
             JSONObject postJsonData = new JSONObject();
             postJsonData.put("id", id);
             postJsonData.put("pw", pw);
+
 
             RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),postJsonData.toString());
 
@@ -122,15 +119,61 @@ public class LoginActivity extends AppCompatActivity {
 
             Log.d("response","============"+response.code());
 
-            if(response.code() == 200){        //로그인 성공
-                return true;
-            }else{
-                return false;        //로그인 실패
-            }
+//            if(response.code() == 200){        //로그인 성공
+//                return true;
+//            }else{
+//                return false;        //로그인 실패
+//            }
+
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    String data = response.body().string();
+
+                    if (response.code() == 200) {
+                        Handler handler = new Handler(Looper.getMainLooper());
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    JSONObject jsonObject = new JSONObject(data);
+
+                                    sf.edit().putString("id",id).apply();
+                                    sf.edit().putString("name", jsonObject.getString("userName")).apply();
+                                    sf.edit().putString("plateNum", "12가3456").apply();
+//                                    if (jsonObject.getString("plateNumber") != null){                 //not Null이면 받아오게 할 것임      //근데 없으면 디폴트값으로 되는거 아님?
+//                                        sf.edit().putString("plateNum", jsonObject.getString("plateNumber")).apply();       //차량번호 plateNumber 맞는지 확인 필요
+//                                    }
+                                    Log.d("response","============"+data);
+                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }catch (JSONException e){
+                                    e.printStackTrace();
+                                }
+                            }
+                        }, 0);
+
+                    } else {
+                        Handler handler = new Handler(Looper.getMainLooper());
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                Id.setError("일치하는 정보가 없습니다.");
+                                Id.requestFocus();
+                            }
+                        }, 0);
+                    }
+                }
+            });
 
         }catch (Exception e){
             e.printStackTrace();
         }
-        return false;
     }
 }

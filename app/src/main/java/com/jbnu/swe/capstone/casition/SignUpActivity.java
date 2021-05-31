@@ -1,6 +1,8 @@
 package com.jbnu.swe.capstone.casition;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -34,6 +36,8 @@ public class SignUpActivity extends AppCompatActivity {
     private String server = "http://114.70.193.152:10111/hipowebserver_war/android/user/signup";     //아이디 서버 주세요...
 //    private Boolean checkID = false;        //근데 만약 중복확인하고 아이디 바꾸고 다시 중복확인 안하면...?
 
+    SharedPreferences sf = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +49,8 @@ public class SignUpActivity extends AppCompatActivity {
         userCheckPW = (EditText) findViewById(R.id.user_check_pw);
         userName = (EditText) findViewById(R.id.user_name);
         userPhone = (EditText) findViewById(R.id.user_phone);
+
+        sf = getSharedPreferences("user", Context.MODE_PRIVATE);
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,14 +125,18 @@ public class SignUpActivity extends AppCompatActivity {
                             try {
                                 String data = response.body().string();
 
+                                Log.d("response","=============="+data);
+
                                 if (response.code() == 200) {
                                     Handler handler = new Handler(Looper.getMainLooper());
                                     handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
-                                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                            startActivity(intent);
-                                            finish();
+                                                sf.edit().putString("id",id).apply();
+                                                sf.edit().putString("name", name).apply();
+                                                Intent intent = new Intent(getApplicationContext(), CarNumRegisterActivity.class);
+                                                startActivity(intent);
+                                                finish();
                                         }
                                     }, 0);
 

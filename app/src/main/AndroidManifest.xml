@@ -16,17 +16,22 @@
         android:supportsRtl="true"
         android:requestLegacyExternalStorage="true"
         android:networkSecurityConfig="@xml/network_security_config"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MainActivity">
+        android:theme="@style/Theme.Casition">
+        <activity android:name=".SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity">
+
+        </activity>
         <activity android:name=".SignUpActivity"></activity>
         <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".CarNumRegisterActivity"></activity>
+        <activity android:name=".CarNumRegisterActivity">
+        </activity>
         <activity android:name=".IDfindActivity"></activity>
         <activity android:name=".PWfindActivity"></activity>
         <activity android:name=".CalcActivity"></activity>

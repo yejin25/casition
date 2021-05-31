@@ -90,6 +90,7 @@
                     android:layout_alignLeft="@+id/user_id"
                     android:background="@drawable/style_edittext"
                     android:hint="비밀번호를 입력해주세요"
+                    android:inputType="textPassword"
                     android:textColor="#5e5e5e"
                     android:textSize="15sp"
                />
@@ -104,6 +105,7 @@
                     android:layout_alignLeft="@+id/id"
                     android:layout_marginBottom="30dp"
                     android:text="비밀번호 확인"
+
                     android:textColor="#5e5e5e"
                     android:textSize="15dp"
                     android:textStyle="bold"></TextView>
@@ -119,6 +121,7 @@
                     android:layout_below="@id/user_pw"
                     android:background="@drawable/style_edittext"
                     android:hint="한번 더 입력해주세요"
+                    android:inputType="textPassword"
                     android:textColor="#5e5e5e"
                     android:textSize="15sp" />
 
