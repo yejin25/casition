@@ -30,7 +30,7 @@ import com.google.android.material.navigation.NavigationView;
 public class MainActivity extends AppCompatActivity {
 
     private ImageView menu;
-    private Button logout, change_carNum, calc;
+    private Button logout, change_carNum, calc, loc;
     private TextView name, plateNum;
 
     @Override
@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         calc = (Button) findViewById(R.id.btn_calc);
         name = (TextView) findViewById(R.id.currentname);
         plateNum = (TextView) findViewById(R.id.carnum);
+        loc = (Button) findViewById(R.id.btn_loc);
 
         name.setText(sf.getString("name","NoName"));
         plateNum.setText(sf.getString("plateNum", "등록 필요"));
@@ -72,6 +73,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        loc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
                 finish();
             }

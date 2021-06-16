@@ -52,7 +52,7 @@ import okhttp3.Response;
 
 public class CarNumRegisterActivity extends AppCompatActivity{
     private ImageView menu, register;
-    private Button logout, change_carNum, calc, select, accept;
+    private Button logout, change_carNum, calc, select, accept, loc;
     private EditText carNum;
     private TextView name, plateNum;
 
@@ -105,6 +105,7 @@ public class CarNumRegisterActivity extends AppCompatActivity{
                 }else if(saveImage == null){
                     Toast.makeText(CarNumRegisterActivity.this, "자동차 등록증을 추가하세요.", Toast.LENGTH_LONG).show();
                 }else{
+                    Toast.makeText(CarNumRegisterActivity.this, "승인 요청이 완료되었습니다.", Toast.LENGTH_LONG).show();
                     //서버로 데이터 전송
                     try {
                         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -196,9 +197,10 @@ public class CarNumRegisterActivity extends AppCompatActivity{
         calc = (Button) findViewById(R.id.btn_calc);
         name = (TextView) findViewById(R.id.currentname);
         plateNum = (TextView) findViewById(R.id.carnum);
+        loc = (Button) findViewById(R.id.btn_loc);
 
-        name.setText(sf.getString("name","NoName"));
-        plateNum.setText(sf.getString("plateNum", "등록 필요"));
+        name.setText(sf.getString("name","김보경"));
+        plateNum.setText(sf.getString("plateNum", "38마0667"));
 
         View header = navigationView.getHeaderView(0);
 
@@ -206,6 +208,15 @@ public class CarNumRegisterActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        loc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
                 finish();
             }

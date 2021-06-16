@@ -145,7 +145,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                     sf.edit().putString("id",id).apply();
                                     sf.edit().putString("name", jsonObject.getString("userName")).apply();
-                                    sf.edit().putString("plateNum", "12가3456").apply();
+                                    sf.edit().putString("plateNum", "38마0667").apply();
 //                                    if (jsonObject.getString("plateNumber") != null){                 //not Null이면 받아오게 할 것임      //근데 없으면 디폴트값으로 되는거 아님?
 //                                        sf.edit().putString("plateNum", jsonObject.getString("plateNumber")).apply();       //차량번호 plateNumber 맞는지 확인 필요
 //                                    }
