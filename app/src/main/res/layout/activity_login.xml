@@ -144,6 +144,13 @@
             android:text = "비밀번호 찾기">
         </TextView>
         </LinearLayout>
+        <TextView
+            android:id="@+id/btn_admin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#00000000"
+            android:text="                   ">
+        </TextView>
     </LinearLayout>
     </LinearLayout>
 

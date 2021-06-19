@@ -32,7 +32,7 @@ import okhttp3.Response;
 public class LoginActivity extends AppCompatActivity {
 
     private Button signUp, login;
-    private TextView findId, findPW;
+    private TextView findId, findPW, adminBtn;
     private EditText Id, PW;
     private String id, pw;
     private String server = "http://114.70.193.152:10111/hipowebserver_war/android/user/signin";
@@ -48,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         login = (Button) findViewById(R.id.btn_login);
         findId = (TextView) findViewById(R.id.btn_findid);
         findPW = (TextView) findViewById(R.id.btn_findpw);
+        adminBtn = (TextView) findViewById(R.id.btn_admin);
         Id = (EditText) findViewById(R.id.user_id);
         PW = (EditText) findViewById(R.id.user_pw);
 
@@ -97,6 +98,15 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        adminBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AdministratorActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void checkExistUser(){

@@ -35,6 +35,10 @@
         <activity android:name=".IDfindActivity"></activity>
         <activity android:name=".PWfindActivity"></activity>
         <activity android:name=".CalcActivity"></activity>
+        <activity android:name=".AdministratorActivity"></activity>
+        <activity android:name=".ShowUserLicenseActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:screenOrientation="unspecified"></activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"
