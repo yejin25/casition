@@ -37,6 +37,8 @@ public class LoginActivity extends AppCompatActivity {
     private String id, pw;
     private String server = "http://114.70.193.152:10111/hipowebserver_war/android/user/signin";
 
+    private int count;
+
     SharedPreferences sf = null;
 
     @Override
@@ -102,8 +104,12 @@ public class LoginActivity extends AppCompatActivity {
         adminBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), AdministratorActivity.class);
-                startActivity(intent);
+                count++;
+
+                if(count % 6 == 0) {
+                    Intent intent = new Intent(getApplicationContext(), AdminLoginActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 

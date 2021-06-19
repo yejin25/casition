@@ -22,7 +22,7 @@ public class IDfindActivity extends AppCompatActivity {
     private EditText Name, Email;
     private Button findId;
     private String name, email;
-    private String server = "";
+    private String server = "http://114.70.193.152:10111/hipowebserver_war/android/user/find/id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,10 @@ public class IDfindActivity extends AppCompatActivity {
 
                 } else {
                     if(isExistUser()){
-                        //아이디 어떻게 알려주지...?
+                        Toast.makeText(IDfindActivity.this, "메일이 전송되었습니다. 메일을 확인해주세요.", Toast.LENGTH_LONG).show();
+
+                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(intent);
                     }else{
                         Toast.makeText(IDfindActivity.this, "일치하는 정보가 없습니다.", Toast.LENGTH_LONG).show();
                     }
@@ -60,15 +63,15 @@ public class IDfindActivity extends AppCompatActivity {
 
     private boolean isExistUser(){
         try {
-            //여기도 서버에서 아이디 비밀번호 일치 확인해서 t/f 보내주세요...ㅎㅎ
+
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
 
             OkHttpClient client = new OkHttpClient();
 
             JSONObject postJsonData = new JSONObject();
-            postJsonData.put("name", name);
-            postJsonData.put("email", email);
+            postJsonData.put("userName", name);
+            postJsonData.put("userEmail", email);
 
             RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), postJsonData.toString());
             Request request = new Request.Builder().url(server).post(requestBody).build();
@@ -87,3 +90,4 @@ public class IDfindActivity extends AppCompatActivity {
         return false;
     }
 }
+

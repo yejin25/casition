@@ -83,6 +83,35 @@
                 android:textSize="15sp"
                 />
 
+            <TextView
+                android:id="@+id/findpw_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/findpw_id"
+                android:layout_alignLeft="@+id/findpw_id"
+                android:layout_marginBottom="30dp"
+                android:text="e-mail"
+                android:textColor="#5e5e5e"
+                android:textSize="15dp"
+                android:textStyle="bold">
+            </TextView>
+
+            <EditText
+                android:id="@+id/inputpw_email"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:layout_toRightOf="@+id/findpw_email"
+                android:layout_below="@id/inputpw_id"
+                android:layout_alignLeft="@+id/inputpw_id"
+                android:background="@drawable/style_edittext"
+                android:hint="e-mail을 입력해주세요"
+                android:textColor="#5e5e5e"
+                android:textSize="15sp"
+                />
+
         </RelativeLayout>
         <Button
             android:id="@+id/btn_auth"
@@ -96,3 +125,4 @@
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
+

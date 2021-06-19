@@ -39,6 +39,7 @@
         <activity android:name=".ShowUserLicenseActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:screenOrientation="unspecified"></activity>
+        <activity android:name=".AdminLoginActivity"></activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"
