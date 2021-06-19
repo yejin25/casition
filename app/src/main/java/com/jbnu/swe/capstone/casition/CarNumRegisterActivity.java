@@ -52,7 +52,7 @@ import okhttp3.Response;
 
 public class CarNumRegisterActivity extends AppCompatActivity{
     private ImageView menu, register;
-    private Button logout, change_carNum, calc, select, accept, loc;
+    private Button logout, change_carNum, calc, select, accept, loc, calc_list;
     private EditText carNum;
     private TextView name, plateNum;
 
@@ -177,7 +177,6 @@ public class CarNumRegisterActivity extends AppCompatActivity{
     }
 
     public byte[] BitmapToByteArray(Bitmap bitmap){
-//        Log.d("CarNumber", "----- Called!");
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
 
@@ -198,9 +197,10 @@ public class CarNumRegisterActivity extends AppCompatActivity{
         name = (TextView) findViewById(R.id.currentname);
         plateNum = (TextView) findViewById(R.id.carnum);
         loc = (Button) findViewById(R.id.btn_loc);
+        calc_list = (Button) findViewById(R.id.btn_calc_list);
 
-        name.setText(sf.getString("name","김보경"));
-        plateNum.setText(sf.getString("plateNum", "38마0667"));
+        name.setText(sf.getString("name","NoName"));
+        plateNum.setText(sf.getString("plateNum", "등록필요"));
 
         View header = navigationView.getHeaderView(0);
 
@@ -235,6 +235,15 @@ public class CarNumRegisterActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), CalcActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        calc_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CalcListActivity.class);
                 startActivity(intent);
                 finish();
             }

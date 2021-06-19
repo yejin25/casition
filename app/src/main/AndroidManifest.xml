@@ -34,6 +34,7 @@
         </activity>
         <activity android:name=".IDfindActivity"></activity>
         <activity android:name=".PWfindActivity"></activity>
+        <activity android:name=".CalcListActivity"></activity>
         <activity android:name=".CalcActivity"></activity>
 
         <provider
