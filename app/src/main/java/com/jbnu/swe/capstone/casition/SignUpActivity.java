@@ -32,7 +32,7 @@ import okhttp3.ResponseBody;
 public class SignUpActivity extends AppCompatActivity {
 
     private Button signUp;
-    private EditText userId, userPW, userCheckPW, userName, userPhone;
+    private EditText userId, userPW, userCheckPW, userName, userEmail;
     private String server = "http://114.70.193.152:10111/hipowebserver_war/android/user/signup";     //아이디 서버 주세요...
 //    private Boolean checkID = false;        //근데 만약 중복확인하고 아이디 바꾸고 다시 중복확인 안하면...?
 
@@ -48,7 +48,7 @@ public class SignUpActivity extends AppCompatActivity {
         userPW = (EditText) findViewById(R.id.user_pw);
         userCheckPW = (EditText) findViewById(R.id.user_check_pw);
         userName = (EditText) findViewById(R.id.user_name);
-        userPhone = (EditText) findViewById(R.id.user_phone);
+        userEmail = (EditText) findViewById(R.id.user_email);
 
         sf = getSharedPreferences("user", Context.MODE_PRIVATE);
 
@@ -68,7 +68,7 @@ public class SignUpActivity extends AppCompatActivity {
         String pw = userPW.getText().toString();
         String checkPW = userCheckPW.getText().toString();
         String name = userName.getText().toString();
-        String phone = userPhone.getText().toString();
+        String email = userEmail.getText().toString();
 
         if(id.isEmpty()){       //빈 문항 처리
             userId.setError("아이디를 입력하세요.");
@@ -86,9 +86,9 @@ public class SignUpActivity extends AppCompatActivity {
             userName.setError("이름을 입력하세요.");
             userName.requestFocus();
 
-        } else if(phone.isEmpty()){
-            userPhone.setError("전화번호를 입력하세요.");
-            userPhone.requestFocus();
+        } else if(email.isEmpty()){
+            userEmail.setError("전화번호를 입력하세요.");
+            userEmail.requestFocus();
 
         }else {
             if (!pw.equals(checkPW)) {
@@ -106,7 +106,7 @@ public class SignUpActivity extends AppCompatActivity {
                     postJsonData.put("id", id);
                     postJsonData.put("pw", pw);
                     postJsonData.put("userName", name);
-                    postJsonData.put("userPhoneNumber",phone);
+                    postJsonData.put("userPhoneNumber",email);
 
                     RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),postJsonData.toString());
                     Request request = new Request.Builder()

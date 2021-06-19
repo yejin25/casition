@@ -30,7 +30,7 @@
                     android:layout_height="match_parent"
                     android:background="#A0C4E6"
                     android:gravity="center"
-                    android:text="casition"
+                    android:text="정산 리스트"
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
                     android:textSize="25dp"
@@ -52,47 +52,12 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/loc_img"
-                    android:layout_width="380dp"
-                    android:layout_height="400dp"
-                    android:layout_gravity="center"
-                    android:maxWidth="200dp"
-                    android:maxHeight="200dp"
-                    android:adjustViewBounds="true"
-                    android:background="@drawable/splash" />
-
-                <RelativeLayout
+                <ListView
+                    android:id="@+id/list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center">
-
-                    <TextView
-                        android:id="@+id/loc_car"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_marginBottom="10dp"
-                        android:textSize="20dp"
-                        android:text=" &lt;현재 차량 위치&gt;"/>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center">
-
-                    <TextView
-                        android:id="@+id/loc_txt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textSize="40dp"
-                        android:text=" A-6"/>
-
-                </RelativeLayout>
+                    android:layout_weight = "1"
+                    tools:ignore="MissingConstraints" />
 
 
             </LinearLayout>
