@@ -63,34 +63,24 @@ public class CalcActivity extends AppCompatActivity {
             StrictMode.setThreadPolicy(policy);
 
             SharedPreferences sf = getSharedPreferences("user",Context.MODE_PRIVATE);
-
             OkHttpClient client = new OkHttpClient();
-
             HttpUrl.Builder urlBuilder = HttpUrl.parse(server).newBuilder();
-
             String url = urlBuilder.build().toString();
-
             Request request = new Request.Builder().url(url).build();
-
             client.newCall(request).enqueue(new Callback() {
                 @Override
                 public void onFailure(@NotNull Call call, @NotNull IOException e) {
                     Log.d("CalcActivity", "----- Read Func " + e + " -----");
                 }
-
                 @Override
                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                     try {
                         String data = response.body().string();
-
                         if (data != null) {
                             JSONArray jsonArray = new JSONArray(data);
-
                             for (int i = 0; i < jsonArray.length(); i++) {
-
                                 JSONObject object = jsonArray.getJSONObject(i);
                                 String name = object.toString();
-
                                 if(name.equals(sf.getString("name", ""))){
                                     JSONArray array = (JSONArray) object.get("presentCarList");
                                     JSONObject jsonObject =  array.getJSONObject(0);
@@ -99,13 +89,11 @@ public class CalcActivity extends AppCompatActivity {
                                 }
                             }
                         }
-
                     } catch (IOException | JSONException e) {
                         e.printStackTrace();
                     }
                 }
             });
-
         } catch (Exception e) {
             e.printStackTrace();
         }

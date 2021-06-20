@@ -88,25 +88,19 @@ public class MainActivity extends AppCompatActivity {
 
             SharedPreferences sf = getSharedPreferences("user", Context.MODE_PRIVATE);
             String serverUrl = "http://114.70.193.152:10111/hipowebserver_war/android/user/parkingArea/" + sf.getString("id", "");
-
             OkHttpClient okHttpClient = new OkHttpClient();
-
             Request request = new Request.Builder()
                     .url(serverUrl)
                     .build();
-
             okHttpClient.newCall(request).enqueue(new Callback() {
                 @Override
                 public void onFailure(Call call, IOException e) {
-
                 }
 
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     try {
-
                         JSONObject userObject = new JSONObject(response.body().string());
-
                         Handler handler = new Handler(Looper.getMainLooper());
                         handler.postDelayed(new Runnable() {
                             @Override
@@ -120,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
 
                                     park_area.setBackground(new BitmapDrawable(getResources(), parkingImageBitmap));
                                     loc_txt.setText(parkingAreaString);
-
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -227,3 +220,4 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 }
+

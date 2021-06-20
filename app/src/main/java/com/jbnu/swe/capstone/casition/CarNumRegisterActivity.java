@@ -106,7 +106,6 @@ public class CarNumRegisterActivity extends AppCompatActivity{
                     Toast.makeText(CarNumRegisterActivity.this, "자동차 등록증을 추가하세요.", Toast.LENGTH_LONG).show();
                 }else{
                     Toast.makeText(CarNumRegisterActivity.this, "승인 요청이 완료되었습니다.", Toast.LENGTH_LONG).show();
-                    //서버로 데이터 전송
                     try {
                         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
                         StrictMode.setThreadPolicy(policy);
@@ -118,16 +117,13 @@ public class CarNumRegisterActivity extends AppCompatActivity{
                                 .addFormDataPart("carNumber",car_num)
                                 .addFormDataPart("file", sf.getString("id",""), RequestBody.create(MultipartBody.FORM, BitmapToByteArray(saveImage)))
                                 .build();
-
                         Request request = new Request.Builder()
                                 .url(server)
                                 .post(requestBody)
                                 .build();
-
                         client.newCall(request).enqueue(new Callback() {
                             @Override
                             public void onFailure(Call call, IOException e) {
-
                             }
 
                             @Override
@@ -136,7 +132,6 @@ public class CarNumRegisterActivity extends AppCompatActivity{
 
                                 if (response.code() == 200) {
                                     Log.d("CarNumberRegister", "----- 1" + data);
-//                                    sf.edit().putString("plateNum", "승인 대기").apply();
                                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                     startActivity(intent);
                                     finish();

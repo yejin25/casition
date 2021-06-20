@@ -84,29 +84,22 @@ public class CalcListActivity extends AppCompatActivity {
             StrictMode.setThreadPolicy(policy);
 
             OkHttpClient client = new OkHttpClient();
-
             HttpUrl.Builder urlBuilder = HttpUrl.parse(server).newBuilder();
-
             String url = urlBuilder.build().toString();
 
             Request request = new Request.Builder().url(url).build();
-
             client.newCall(request).enqueue(new Callback() {
                 @Override
                 public void onFailure(@NotNull Call call, @NotNull IOException e) {
                     Log.d("CalcListActivity", "----- Read Func " + e + " -----");
                 }
-
                 @Override
                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                     try {
                         String data = response.body().string();
-
                         if (data != null) {
                             dataArrayList.clear();
-//                            Log.d("clear", "==============clear");
                             JSONArray jsonArray = new JSONArray(data);
-
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject object = jsonArray.getJSONObject(i); // obj -> jsonObj
                                 Data calc_data = new Data();
@@ -115,17 +108,13 @@ public class CalcListActivity extends AppCompatActivity {
                                 calc_data.out_time = object.getString("outTime");
                                 dataArrayList.add(calc_data);
                             }
-                            Log.d("update", "=================add");
                         }
-
                     } catch (IOException | JSONException e) {
                         e.printStackTrace();
                     }
                 }
             });
-
             adapter.notifyDataSetChanged();
-
         } catch (Exception e) {
             e.printStackTrace();
         }

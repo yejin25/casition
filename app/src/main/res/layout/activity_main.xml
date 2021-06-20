@@ -60,7 +60,7 @@
                     android:maxWidth="200dp"
                     android:maxHeight="200dp"
                     android:adjustViewBounds="true"
-                    android:background="@drawable/splash" />
+                    android:background="@drawable/parking" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -90,7 +90,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:textSize="40dp"
-                        android:text=" A-6"/>
+                        android:text=" B1 - A - 6"/>
 
                 </RelativeLayout>
 

@@ -116,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void checkExistUser(){
         try {
-           StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
 
             OkHttpClient client = new OkHttpClient();
@@ -125,31 +125,20 @@ public class LoginActivity extends AppCompatActivity {
             postJsonData.put("id", id);
             postJsonData.put("pw", pw);
 
-
             RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),postJsonData.toString());
-
             Request request = new Request.Builder().url(server).post(requestBody).build();
-
             Response response = client.newCall(request).execute();
 
             Log.d("response","============"+response.code());
 
-//            if(response.code() == 200){        //로그인 성공
-//                return true;
-//            }else{
-//                return false;        //로그인 실패
-//            }
-
             client.newCall(request).enqueue(new Callback() {
                 @Override
                 public void onFailure(Call call, IOException e) {
-
                 }
 
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     String data = response.body().string();
-
                     if (response.code() == 200) {
                         Handler handler = new Handler(Looper.getMainLooper());
                         handler.postDelayed(new Runnable() {
@@ -160,6 +149,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                     sf.edit().putString("id",id).apply();
                                     sf.edit().putString("name", jsonObject.getString("userName")).apply();
+//                                    sf.edit().putString("plateNum", "38마0667").apply();
                                     if(jsonObject.getString("userCarNumber")!=null && !jsonObject.getString("userCarNumber").equals("")){
                                         sf.edit().putString("plateNum", jsonObject.getString("userCarNumber")).apply();
                                     }
@@ -172,7 +162,6 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             }
                         }, 0);
-
                     } else {
                         Handler handler = new Handler(Looper.getMainLooper());
                         handler.postDelayed(new Runnable() {
@@ -185,7 +174,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }
             });
-
         }catch (Exception e){
             e.printStackTrace();
         }
